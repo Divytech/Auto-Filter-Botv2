@@ -118,11 +118,9 @@ SHORTLINK = is_enabled('SHORTLINK', False)
 PAYMENT_QR = environ.get('PAYMENT_QR', 'http://graph.org/file/cacbbea472e5a48ce0d64.jpg')
 
 # for stream
-IS_STREAM = is_enabled('IS_STREAM', True)
+IS_STREAM = is_enabled('IS_STREAM', False)
 BIN_CHANNEL = environ.get("BIN_CHANNEL", "")
 if len(BIN_CHANNEL) == 0:
-    print('Error - BIN_CHANNEL is missing, exiting now')
-    exit()
 else:
     BIN_CHANNEL = int(BIN_CHANNEL)
 URL = environ.get("URL", "")

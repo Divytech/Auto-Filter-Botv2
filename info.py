@@ -119,7 +119,7 @@ PAYMENT_QR = environ.get('PAYMENT_QR', 'http://graph.org/file/cacbbea472e5a48ce0
 
 # for stream
 IS_STREAM = is_enabled('IS_STREAM', False)
-BIN_CHANNEL = environ.get("BIN_CHANNEL", "")
+BIN_CHANNEL = environ.get("LOG_CHANNEL", "")
 if len(BIN_CHANNEL) == 0:
     print('Error - BIN_CHANNEL is missing, exiting now')
 else:

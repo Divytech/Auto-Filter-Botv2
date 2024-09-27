@@ -1,4 +1,5 @@
 class script(object):
+
     START_TXT = """<b>ʜᴇʏ {}, <i>{}</i>
     
 ɪ ᴀᴍ ᴘᴏᴡᴇʀғᴜʟ ᴀᴜᴛᴏ ғɪʟᴛᴇʀ ᴡɪᴛʜ ʟɪɴᴋ sʜᴏʀᴛᴇɴᴇʀ ʙᴏᴛ. ʏᴏᴜ ᴄᴀɴ ᴜꜱᴇ ᴀꜱ ᴀᴜᴛᴏ ғɪʟᴛᴇʀ ᴡɪᴛʜ ʟɪɴᴋ sʜᴏʀᴛᴇɴᴇʀ ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ... ɪᴛ'ꜱ ᴇᴀꜱʏ ᴛᴏ ᴜꜱᴇ ᴊᴜsᴛ ᴀᴅᴅ ᴍᴇ ᴀꜱ ᴀᴅᴍɪɴ ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ ɪ ᴡɪʟʟ ᴘʀᴏᴠɪᴅᴇ ᴛʜᴇʀᴇ ᴍᴏᴠɪᴇꜱ ᴡɪᴛʜ ʏᴏᴜʀ ʟɪɴᴋ ꜱʜᴏʀᴛᴇɴᴇʀ... ♻️</b>"""
@@ -29,18 +30,6 @@ Total - <code>{}</code>"""
     NEW_USER_TXT = """#NewUser
 ★ Name: {}
 ★ ID: <code>{}</code>"""
-
-    NO_RESULT_TXT = """#NoResult
-★ Group Name: {}
-★ Group ID: <code>{}</code>
-★ Name: {}
-
-★ Message: {}"""
-
-    REQUEST_TXT = """★ Name: {}
-★ ID: <code>{}</code>
-
-★ Message: {}"""
 
     NOT_FILE_TXT = """👋 Hello {},
 
@@ -117,6 +106,7 @@ I can't find the <b>{}</b> in my database! 🥲
 /users - to get all users details
 /chats - to get all groups
 /invite_link - to generate invite link
+/set_pm_search - to do pm search on/off
 /index - to index bot accessible channels</b>"""
     
     USER_COMMAND_TXT = """<b>Here is bot user commands 👇
@@ -130,8 +120,9 @@ I can't find the <b>{}</b> in my database! 🥲
 /set_welcome - to set custom new joined users welcome message for group
 /set_tutorial - to set custom tutorial link in result page button
 /id - to check group or channel id
-/openai - Find solution to any question with ChatGPT</b>"""
-
+/set_fsub - to set force subscribe channels
+/remove_fsub - to remove all force subscribe channel</b>"""
+    
     SOURCE_TXT = """<b>ʙᴏᴛ ɢɪᴛʜᴜʙ ʀᴇᴘᴏsɪᴛᴏʀʏ -
 
 - ᴛʜɪꜱ ʙᴏᴛ ɪꜱ ᴀɴ ᴏᴘᴇɴ ꜱᴏᴜʀᴄᴇ ᴘʀᴏᴊᴇᴄᴛ.
@@ -140,7 +131,30 @@ I can't find the <b>{}</b> in my database! 🥲
 
 - ᴅᴇᴠʟᴏᴘᴇʀ - @HA_Bots"""
 
-    SPAM_TXT = """{} Don't Spam, Wait For {}
+    PREMIUM_PLAN_TEXT = """<b><i><u>- ᴀᴠᴀɪʟᴀʙʟᴇ ᴘʟᴀɴs - </u>
 
-Else, You Can Buy Our Subscriptions.
-<a href={}>Click Here</a> To Learn More"""
+- 30ʀs - 1 ᴡᴇᴇᴋ
+- 50ʀs - 1 ᴍᴏɴᴛʜs
+- 120ʀs - 3 ᴍᴏɴᴛʜs
+- 220ʀs - 6 ᴍᴏɴᴛʜs
+
+<u>🎁 ᴘʀᴇᴍɪᴜᴍ ғᴇᴀᴛᴜʀᴇs 🎁</u>
+
+○ ɴᴏ ɴᴇᴇᴅ ᴛᴏ ᴠᴇʀɪғʏ
+○ ɴᴏ ɴᴇᴇᴅ ᴛᴏ ᴏᴘᴇɴ ʟɪɴᴋ
+○ ᴅɪʀᴇᴄᴛ ғɪʟᴇs   
+○ ᴀᴅ-ғʀᴇᴇ ᴇxᴘᴇʀɪᴇɴᴄᴇ 
+○ ʜɪɢʜ-sᴘᴇᴇᴅ ᴅᴏᴡɴʟᴏᴀᴅ ʟɪɴᴋ                           
+○ ᴜɴʟɪᴍɪᴛᴇᴅ ᴍᴏᴠɪᴇs & sᴇʀɪᴇs                                                                         
+○ ꜰᴜʟʟ ᴀᴅᴍɪɴ sᴜᴘᴘᴏʀᴛ                              
+○ ʀᴇǫᴜᴇsᴛ ᴡɪʟʟ ʙᴇ ᴄᴏᴍᴘʟᴇᴛᴇᴅ ɪɴ 1ʜ ɪꜰ ᴀᴠᴀɪʟᴀʙʟᴇ   
+
+✨ ᴜᴘɪ ɪᴅ - <code>{}</code>
+
+ᴄʟɪᴄᴋ ᴛᴏ ᴄʜᴇᴄᴋ ʏᴏᴜʀ ᴀᴄᴛɪᴠᴇ ᴘʟᴀɴ /myplan
+
+💢 ᴍᴜsᴛ sᴇɴᴅ sᴄʀᴇᴇɴsʜᴏᴛ ᴀғᴛᴇʀ ᴘᴀʏᴍᴇɴᴛ
+
+‼️ ᴀғᴛᴇʀ sᴇɴᴅɪɴɢ ᴀ sᴄʀᴇᴇɴsʜᴏᴛ ᴘʟᴇᴀsᴇ ɢɪᴠᴇ ᴜs sᴏᴍᴇ ᴛɪᴍᴇ ᴛᴏ ᴀᴅᴅ ʏᴏᴜ ɪɴ ᴛʜᴇ ᴘʀᴇᴍɪᴜᴍ ʟɪsᴛ</i></b>"""
+
+

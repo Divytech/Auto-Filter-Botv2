@@ -1,4 +1,4 @@
-pyrofork
+Pyrofork
 tgcrypto
 motor
 marshmallow
@@ -10,5 +10,5 @@ shortzy
 aiohttp
 aiofiles
 telegraph
-openai
 speedtest-cli
+uvloop

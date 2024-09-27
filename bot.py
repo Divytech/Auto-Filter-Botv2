@@ -1,16 +1,29 @@
-from pyrogram import Client, __version__
-from database.ia_filterdb import Media
-from aiohttp import web
-from database.users_chats_db import db
-from web import web_app
-from info import LOG_CHANNEL, API_ID, API_HASH, BOT_TOKEN, PORT, BIN_CHANNEL
-from utils import temp, get_readable_time
-from typing import Union, Optional, AsyncGenerator
-from pyrogram import types
-import time, os, platform
-from pyrogram.errors import AccessTokenExpired, AccessTokenInvalid, FloodWait
+import os
+import time
 import asyncio
+import uvloop
 
+# pyrogram imports
+from pyrogram import types
+from pyrogram import Client
+from pyrogram.errors import FloodWait
+
+# aiohttp imports
+from aiohttp import web
+from typing import Union, Optional, AsyncGenerator
+
+# local imports
+from web import web_app
+from info import LOG_CHANNEL, API_ID, API_HASH, BOT_TOKEN, PORT, BIN_CHANNEL, ADMINS, DATABASE_URL
+from utils import temp, get_readable_time
+
+# pymongo and database imports
+from database.users_chats_db import db
+from database.ia_filterdb import Media
+from pymongo.mongo_client import MongoClient
+from pymongo.server_api import ServerApi
+
+uvloop.install()
 
 class Bot(Client):
     def __init__(self):
@@ -27,6 +40,13 @@ class Bot(Client):
         b_users, b_chats = await db.get_banned()
         temp.BANNED_USERS = b_users
         temp.BANNED_CHATS = b_chats
+        client = MongoClient(DATABASE_URL, server_api=ServerApi('1'))
+        try:
+            client.admin.command('ping')
+            print("Pinged your deployment. You successfully connected to MongoDB!")
+        except Exception as e:
+            print("Something Went Wrong While Connecting To Database!", e)
+            exit()
         await super().start()
         if os.path.exists('restart.txt'):
             with open("restart.txt") as file:
@@ -44,6 +64,9 @@ class Bot(Client):
         temp.B_NAME = me.first_name
         username = '@' + me.username
         print(f"{me.first_name} is started now 🤗")
+        #groups = await db.get_all_chats_count()
+        #for grp in groups:
+            #await save_group_settings(grp['id'], 'fsub', "")
         app = web.AppRunner(web_app)
         await app.setup()
         await web.TCPSite(app, "0.0.0.0", PORT).start()
@@ -58,13 +81,12 @@ class Bot(Client):
         except:
             print("Error - Make sure bot admin in BIN_CHANNEL, exiting now")
             exit()
-        print(f"\nPyrogram [v{__version__}] Bot [{username}] Started With Python [v{platform.python_version()}]\n")
-
+        for admin in ADMINS:
+            await self.send_message(chat_id=admin, text="<b>✅ ʙᴏᴛ ʀᴇsᴛᴀʀᴛᴇᴅ</b>")
 
     async def stop(self, *args):
         await super().stop()
         print("Bot Stopped! Bye...")
-
 
     async def iter_messages(self: Client, chat_id: Union[int, str], limit: int, offset: int = 0) -> Optional[AsyncGenerator["types.Message", None]]:
         """Iterate through a chat sequentially.
@@ -109,3 +131,4 @@ except FloodWait as vp:
     asyncio.sleep(vp.value)
     print("Now Ready For Deploying !")
     app.run()
+
